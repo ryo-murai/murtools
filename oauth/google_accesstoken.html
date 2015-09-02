@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+  <title>Google Access Token</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>Google Access Token</h1>
+    <form action="https://accounts.google.com/o/oauth2/auth">
+      <legend>Get Token Code</legend>
+      <div class="form-group">
+        <label for="client_id2">client id</label>
+        <input type="text" class="form-control" id="client_id2" name="client_id" />
+      </div>
+      <div class="form-group">
+        <label for="redirect_uri2">redirect URI</label>
+        <input type="text" class="form-control" id="redirect_uri2" name="redirect_uri" />
+      </div>
+      <div class="form-group">
+        <label for="scope2">Scope</label>
+        <input type="text" class="form-control" id="scope2" name="scope" />
+      </div>
+      <div class="form-group">
+        <label for="response_type2">Response Type</label>
+        <input type="text" class="form-control" id="response_type2" name="response_type" value="code" />
+      </div>
+      <div class="form-group">
+        <label for="access_type2">Access Type</label>
+        <input type="text" class="form-control" id="access_type2" name="access_type" value="offline" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Authenticate</button>
+        <span id="helpBlock" class="help-block">
+        <ol>
+          <li>submit google user login form</li>
+          <li>permit to access your account / service</li>
+          <li>memorize the code contained in the redirected url <code>http://<i>redirect_uri</i>/?code=<b>1234567890abcdefghijk</b></code></li>
+          <li>back to this page, then proceed to the following form</li>
+        </ol>
+        </span>
+      </div>
+    </form>
+
+    <form action="https://accounts.google.com/o/oauth2/token" method="post" >
+      <legend>Get Refresh Token</legend>
+      <div class="form-group">
+        <label for="client_id">client id</label>
+        <input type="text" class="form-control" id="client_id" name="client_id" />
+      </div>
+      <div class="form-group">
+        <label for="client_secret">client secret</label>
+        <input type="text" class="form-control" id="client_secret" name="client_secret" />
+      </div>
+      <div class="form-group">
+        <label for="redirect_uri">redirect URI</label>
+        <input type="text" class="form-control" id="redirect_uri" name="redirect_uri" />
+      </div>
+      <div class="form-group">
+        <label for="grant_type">Grant Type</label>
+        <input type="text" class="form-control" id="grant_type" name="grant_type" value="authorization_code" />
+      </div>
+      <div class="form-group">
+        <label for="code">Code</label>
+        <input type="text" class="form-control" id="code" name="code" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Get Token</button>
+        <button type="button" id="copy-fields" class="btn">Copy Fields</button>
+      </div>
+    </form>
+
+    <footer>
+      <hr />
+      <div><a href="..">Back</a></div>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script>
+    $('#copy-fields').bind('click', function(e) {
+      $('#client_id').val($('#client_id2').val());
+      $('#redirect_uri').val($('#redirect_uri2').val());
+    });
+  </script>
+</body>
+</html>
