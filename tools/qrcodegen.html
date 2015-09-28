@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+  <title>Generate QR code | murtools</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>Generate QR code</h1>
+    <form>
+      <legend>Generate QR code</legend>
+      <div class="form-group">
+        <label for="input-text">Input Text</label>
+        <input type="text" class="form-control" id="input-text" />
+      </div>
+      <button type="button" id="gen-qrcode-btn" class="btn btn-primary">Generate</button>
+      <div class="form-group">
+        <label for="qrcode">QR Code</label>
+        <div id="qrcode"></div>
+      </div>
+    </form>
+    <footer>
+      <hr />
+      <div><a href="..">Back</a></div>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+  <script>
+    $('#gen-qrcode-btn').bind('click', function(e) {
+      var input = $('#input-text').val();
+      $('#qrcode').qrcode(input);
+    });
+  </script>
+</body>
+</html>
