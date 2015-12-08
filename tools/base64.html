@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+  <title>Base64 Encode/Decode | murtools</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>Base64 Encode/Decode</h1>
+    <form>
+      <fieldset>
+      <legend>Base64 Encode</legend>
+      <div class="form-group">
+        <label for="input-text">Input Text</label>
+        <input type="text" class="form-control" id="input-text" />
+      </div>
+
+      <button type="button" id="encode-btn" class="btn btn-primary">Encode</button>
+      <div class="form-group">
+        <label for="encoded-result">Encoded Result</label>
+        <input type="text" class="form-control" id="encoded-result" readonly />
+      </div>
+      </fieldset>
+
+      <fieldset>
+      <legend>Base64 Decode</legend>
+      <div class="form-group">
+        <label for="encoded-text">Encoded Text</label>
+        <input type="text" class="form-control" id="encoded-text" />
+      </div>
+
+      <button type="button" id="decode-btn" class="btn btn-primary">Decode</button>
+      <div class="form-group">
+        <label for="decoded-text">Decoded Text</label>
+        <input type="text" class="form-control" id="decoded-text" readonly />
+      </div>
+      </fieldset>
+    </form>
+    <footer>
+      <hr />
+      <div><a href="..">Back</a></div>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    $('#encode-btn').bind('click', function(e) {
+      var input = $('#input-text').val();
+      if(window.btoa) {
+        var encoded = window.btoa(unescape(encodeURIComponent(input)));
+        $('#encoded-result').val(encoded);
+      } else {
+        alert("this browser doesn't support the base64 codec");
+      }
+    });
+
+    $('#decode-btn').bind('click', function(e) {
+      var input = $('#encoded-text').val();
+      if(window.atob) {
+        var decoded = decodeURIComponent(escape(window.atob(input)));
+        $('#decoded-text').val(decoded);
+      } else {
+        alert("this browser doesn't support the base64 codec");
+      }
+    });
+  </script>
+</body>
+</html>
