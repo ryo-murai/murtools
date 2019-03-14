@@ -1,1 +1,1 @@
-javascript:(function(){$("<script>",{src:'https://ryo-murai.github.io/murtools/jsonp/hello.js'});})()
+javascript:(function(){$("<script>",{src:'https://ryo-murai.github.io/murtools/jsonp/hello.js'}).appendTo('body');})()
